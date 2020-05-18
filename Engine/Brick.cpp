@@ -9,7 +9,27 @@ Brick::Brick(const RectF& rect_in, Color color_in)
 
 void Brick::Draw(Graphics & gfx) const
 {
-	gfx.DrawRect(rect, c);
+	if (!destroyed) {
+		gfx.DrawRect(rect, c);
+	}
+}
+
+bool Brick::DoBallCollision(Ball& ball)
+{
+	RectF ballRect = ball.GetRect();
+	if (rect.instanceCollision(ball.GetRect())) {
+		if (ballRect.top > rect.top && ballRect.bottom < rect.bottom) {
+			ball.ReboundX();
+			destroyed = true;
+		}
+		else {
+			ball.ReboundY();
+			destroyed = true;
+			return true;
+		}
+	}
+	return false;
+
 }
 
 void Brick::StretchX(float x)
@@ -20,4 +40,9 @@ void Brick::StretchX(float x)
 void Brick::StretchY(float y)
 {
 	rect.bottom += y;
+}
+
+RectF& Brick::GetRect()
+{
+	return rect;
 }

@@ -20,13 +20,16 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
-#include "Brick.h"
+#include "SpriteCodex.h"
 
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	brick(RectF(200.0f, 260.0f, 240.0f, 300.0f), Colors::Green)
+	brick(RectF(40.0f, 60.0f, 100.0f, 500.0f), Colors::Green),
+	ball(Vec2( 300.0f, 300.0f ), Vec2(300.0f, 300.0f)),
+	walls(0.0f, float(gfx.ScreenWidth), 0.0f, float(gfx.ScreenHeight)),
+	soundPad(L"Sounds\\arkpad.wav")
 {
 }
 
@@ -40,6 +43,17 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	const float dt = ft.Mark();
+	ball.Update(dt);
+	bool wallCollide = ball.DoWallCollision(walls);
+	if (wallCollide) {
+		soundPad.Play();
+	}
+	bool paddleCollide = brick.DoBallCollision(ball);
+	if (paddleCollide) {
+		soundPad.Play();
+	}
+
 	/*if (wnd.kbd.KeyIsPressed(VK_RIGHT)) {
 		brick.StretchX(1.0f);
 	}
@@ -57,5 +71,6 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	//brick.Draw(gfx);
+	brick.Draw(gfx);
+	ball.Draw(gfx);
 }

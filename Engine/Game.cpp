@@ -20,11 +20,13 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include "Brick.h"
 
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	brick(RectF(200.0f, 260.0f, 240.0f, 300.0f), Colors::Green)
 {
 }
 
@@ -38,8 +40,22 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	/*if (wnd.kbd.KeyIsPressed(VK_RIGHT)) {
+		brick.StretchX(1.0f);
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_LEFT)) {
+		brick.StretchX(-1.0f);
+	}
+	if (wnd.kbd.KeyIsPressed(VK_DOWN)) {
+		brick.StretchY(1.0f);
+	}
+	else if (wnd.kbd.KeyIsPressed(VK_UP)) {
+		brick.StretchY(-1.0f);
+	}
+	*/
 }
 
 void Game::ComposeFrame()
 {
+	//brick.Draw(gfx);
 }

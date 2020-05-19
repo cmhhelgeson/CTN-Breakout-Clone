@@ -21,6 +21,7 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include "SpriteCodex.h"
+#include <vector>
 
 Game::Game( MainWindow& wnd )
 	:
@@ -71,7 +72,9 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	gfx.DrawLine({ 100, 100.f }, {(float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY()}, Colors::White);
+	std::vector<Vec2> vertVec = { Vec2(100.0f, 100.0f), Vec2(300.0f, 300.0f), { (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() } };
+	gfx.DrawPolygon(vertVec, Colors::Red);
+	gfx.DrawLine({ 100.0f, 100.f }, { (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() }, Colors::White);
 	//gfx.DrawLine({ 100.0f, 100.0f }, { (float)wnd.mouse.GetPos().first, (float)wnd.mouse.GetPos().second }, Colors::White);
 	brick.Draw(gfx);
 	ball.Draw(gfx);

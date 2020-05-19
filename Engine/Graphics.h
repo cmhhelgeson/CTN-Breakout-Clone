@@ -24,6 +24,7 @@
 #include "ChiliException.h"
 #include "Colors.h"
 #include "RectF.h"
+#include <vector>
 
 class Graphics
 {
@@ -115,6 +116,12 @@ public:
 			PutPixel(bucket4, j >> 16, c);
 			j -= decInc;
 		}
+	}
+	void DrawPolygon(const std::vector<Vec2>& verts, Color c) {
+		for (auto i = verts.begin(); i != std::prev(verts.end()); i++) {
+			DrawLine(*i, *std::next(i), c);
+		}
+		DrawLine(verts.back(), verts.front(), c);
 	}
 	~Graphics();
 private:

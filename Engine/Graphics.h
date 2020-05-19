@@ -62,6 +62,60 @@ public:
 		DrawRect(int (rect.left), int (rect.top), int (rect.right), int (rect.bottom), c);
 	}
 	void DrawCircle( int x,int y,int radius,Color c );
+	void DrawLine(const Vec2& pos0, const Vec2& pos1, Color c) {
+		/*Po-Han Lin's EFLA Line Algorithm www.edepot.com/algorithm.html */
+		bool yLonger = false;
+		int shortLen = (int)pos1.y - (int)pos0.y;
+		int longLen = (int)pos1.x - (int)pos0.x;
+		int shortAbs = ((shortLen >> 31) ^ shortLen) - (shortLen >> 31);
+		int longAbs = ((longLen >> 31) ^ longLen) - (longLen >> 31);
+		if (shortAbs > longAbs) {
+			int swap = shortLen;
+			shortLen = longLen;
+			longLen = swap;
+			yLonger = true;
+		}
+		int decInc;
+		if (longLen == 0) {
+			decInc = 0;
+		} else {
+			decInc = (shortLen << 16) / longLen;
+		}
+		int bucket1 = (int)pos0.x << 16;
+		int bucket2 = (int)pos0.y;
+		int bucket3 = (int)pos0.y << 16;
+		int bucket4 = (int)pos0.x;
+		if (yLonger) {
+			if (longLen>0) {
+				longLen += pos0.y;
+				for (int j = 0x8000 + bucket1; bucket2 <= longLen; bucket2++) {
+					PutPixel(j >> 16, bucket2, c);
+					j += decInc;
+				}
+				return;
+			}
+			longLen += pos0.y;
+			for (int j = 0x8000 + bucket1; bucket2 >= longLen; --bucket2) {
+				PutPixel(j >> 16, bucket2, c);
+				j -= decInc;
+			}
+			return;
+		}
+
+		if (longLen > 0) {
+			longLen += pos0.x;
+			for (int j = 0x8000 + bucket3; bucket4 <= longLen; ++bucket4) {
+				PutPixel(bucket4, j >> 16, c);
+				j += decInc;
+			}
+			return;
+		}
+		longLen += pos0.x;
+		for (int j = 0x8000 + bucket3; bucket4 >= longLen; --bucket4) {
+			PutPixel(bucket4, j >> 16, c);
+			j -= decInc;
+		}
+	}
 	~Graphics();
 private:
 	Microsoft::WRL::ComPtr<IDXGISwapChain>				pSwapChain;

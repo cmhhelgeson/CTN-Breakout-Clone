@@ -71,6 +71,8 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	gfx.DrawLine({ 100, 100.f }, {(float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY()}, Colors::White);
+	//gfx.DrawLine({ 100.0f, 100.0f }, { (float)wnd.mouse.GetPos().first, (float)wnd.mouse.GetPos().second }, Colors::White);
 	brick.Draw(gfx);
 	ball.Draw(gfx);
 }

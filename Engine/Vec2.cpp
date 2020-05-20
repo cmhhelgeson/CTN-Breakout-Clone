@@ -62,3 +62,10 @@ Vec2 Vec2::GetNormalized() const
 	}
 	return *this;
 }
+
+float Vec2::FindDistance(const Vec2& rhs) const
+{
+	float a = x - rhs.x;
+	float b = y - rhs.y;
+	return sqrt((a * a) + (b * b));
+}

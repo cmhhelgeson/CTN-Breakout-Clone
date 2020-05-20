@@ -15,6 +15,7 @@ public:
 	float GetLengthSq() const;
 	Vec2& Normalize();
 	Vec2 GetNormalized() const;
+	float FindDistance(const Vec2& rhs) const;
 public:
 	float x;
 	float y;

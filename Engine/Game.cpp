@@ -75,6 +75,10 @@ void Game::ComposeFrame()
 	std::vector<Vec2> vertVec = { Vec2(100.0f, 100.0f), Vec2(300.0f, 300.0f), { (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() } };
 	gfx.DrawPolygon(vertVec, Colors::Red);
 	gfx.DrawLine({ 100.0f, 100.f }, { (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() }, Colors::White);
+	/*Vec2 FindDistance Test
+		float dist = Vec2(100.0f, 100.0f).FindDistance({ (float)wnd.mouse.GetPosX(), (float)wnd.mouse.GetPosY() });
+		gfx.DrawLine({ 100.0f, 400.0f }, { 100.0f + dist, 400.0f }, Colors::Blue); 
+	*/
 	//gfx.DrawLine({ 100.0f, 100.0f }, { (float)wnd.mouse.GetPos().first, (float)wnd.mouse.GetPos().second }, Colors::White);
 	brick.Draw(gfx);
 	ball.Draw(gfx);

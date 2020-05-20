@@ -1,5 +1,8 @@
 #pragma once
 
+#include <math.h>
+#include "cmh_math.h"
+
 template<typename T>
 class Vec2_
 {
@@ -30,6 +33,14 @@ public:
 	Vec2_& Vec2_::operator*=(T rhs)
 	{
 		return *this = *this * rhs;
+	}
+
+	Vec2_ Vec2_::dot(const Vec2_& rhs) {
+		return Vec2_(x * rhs.x, y * rhs.y);
+	}
+
+	Vec2_ Vec2_::cross(const Vec2_& rhs) {
+		return Vec2_(x * rhs.y, y * rhs.x);
 	}
 
 	Vec2_ Vec2_::operator-(const Vec2_& rhs) const
@@ -72,6 +83,10 @@ public:
 		T a = x - rhs.x;
 		T b = y - rhs.y;
 		return sqrt((a * a) + (b * b));
+	}
+	
+	T Vec2_::angle() const {
+		return CMHMath::atan2(y, x);
 	}
 public:
 	T x;

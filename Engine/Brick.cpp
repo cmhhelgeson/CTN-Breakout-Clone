@@ -21,6 +21,7 @@ bool Brick::DoBallCollision(Ball& ball)
 		if (ballRect.top > rect.top && ballRect.bottom < rect.bottom) {
 			ball.ReboundX();
 			destroyed = true;
+			return true;
 		}
 		else {
 			ball.ReboundY();

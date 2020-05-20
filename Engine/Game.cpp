@@ -23,14 +23,15 @@
 #include "SpriteCodex.h"
 #include <vector>
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd ),
-	brick(RectF(40.0f, 60.0f, 100.0f, 500.0f), Colors::Green),
-	ball(Vec2( 300.0f, 300.0f ), Vec2(300.0f, 300.0f)),
+	wnd(wnd),
+	gfx(wnd),
+	ball(Vec2(300.0f, 300.0f), Vec2(300.0f, 300.0f)),
 	walls(0.0f, float(gfx.ScreenWidth), 0.0f, float(gfx.ScreenHeight)),
-	soundPad(L"Sounds\\arkpad.wav")
+	soundPad(L"Sounds\\arkpad.wav"),
+	soundBrick(L"Sounds\\arkbrick.wav"),
+	brick(RectF(40.0f, 60.0f, 100.0f, 500.0f), Colors::Green)
 {
 }
 
@@ -52,7 +53,7 @@ void Game::UpdateModel()
 	}
 	bool paddleCollide = brick.DoBallCollision(ball);
 	if (paddleCollide) {
-		soundPad.Play();
+		soundBrick.Play();
 	}
 
 	/*if (wnd.kbd.KeyIsPressed(VK_RIGHT)) {

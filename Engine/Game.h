@@ -49,6 +49,7 @@ private:
 	Ball ball;
 	RectF walls;
 	Sound soundPad;
+	Sound soundBrick;
 	Vec2 stopVec = { 0.0f, 0.0f };
 	bool stop = false;
 	/********************************/

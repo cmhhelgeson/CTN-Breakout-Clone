@@ -72,6 +72,12 @@
     <ClInclude Include="Ball.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cmh_math.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="typedefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -99,9 +105,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SpriteCodex.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Vec2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FrameTimer.cpp">

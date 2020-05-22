@@ -1,5 +1,11 @@
 #include "Brick.h"
 
+void Brick::Init(const RectF & rect_in, Color color_in)
+{
+	rect = rect_in;
+	c = color_in;
+}
+
 Brick::Brick(const RectF& rect_in, Color color_in)
 	:
 	rect(rect_in), 

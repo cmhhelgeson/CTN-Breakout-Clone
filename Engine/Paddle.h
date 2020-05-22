@@ -14,6 +14,8 @@ public:
 	void Update(const Keyboard& kbd, float dt);
 	RectF GetRect() const;
 private:
+	static constexpr float wingWidth = 10.0f;
+	Color wingColor = Colors::Red;
 	Color c = Colors::White;
 	Vec2 pos;
 	float speed = 300.0f;

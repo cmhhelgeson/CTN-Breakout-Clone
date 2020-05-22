@@ -27,6 +27,7 @@
 #include "Ball.h"
 #include "Sound.h"
 #include "Brick.h"
+#include "Paddle.h"
 
 class Game
 {
@@ -47,11 +48,10 @@ private:
 	FrameTimer ft;
 	Brick brick;
 	Ball ball;
+	Paddle pad;
 	RectF walls;
 	Sound soundPad;
 	Sound soundBrick;
-	Vec2 stopVec = { 0.0f, 0.0f };
-	bool stop = false;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

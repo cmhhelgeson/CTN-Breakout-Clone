@@ -60,5 +60,6 @@ private:
 	RectF walls;
 	Sound soundPad;
 	Sound soundBrick;
+	bool yay = false;
 
 };

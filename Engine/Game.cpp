@@ -27,7 +27,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	ball(Vec2(300.0f, 300.0f), Vec2(300.0f, 300.0f)),
+	ball(Vec2(300.0f, 300.0f), Vec2(400.0f, 400.0f)),
 	walls(0.0f, float(gfx.ScreenWidth), 0.0f, float(gfx.ScreenHeight)),
 	soundPad(L"Sounds\\arkpad.wav"),
 	soundBrick(L"Sounds\\arkbrick.wav"),
@@ -60,30 +60,23 @@ void Game::UpdateModel()
 	pad.Update(wnd.kbd, dt);
 	pad.DoWallCollision(walls);
 	ball.Update(dt);
+	for (Brick& b : bricks) {
+		if (b.GetDestroyed() == false && b.DoBallCollision(ball)) {
+			soundBrick.Play();
+			break;
+		}
+	}
 	//if (brick.DoBallCollision(ball)) {
 		//soundBrick.Play();
 	//}
 	if (pad.DoBallCollision(ball)) {
 		soundBrick.Play();
+		pad.MoveUp(dt);
 	}
 	if (ball.DoWallCollision(walls)) {
 		soundPad.Play();
 	}
 	
-
-	/*if (wnd.kbd.KeyIsPressed(VK_RIGHT)) {
-		brick.StretchX(1.0f);
-	}
-	else if (wnd.kbd.KeyIsPressed(VK_LEFT)) {
-		brick.StretchX(-1.0f);
-	}
-	if (wnd.kbd.KeyIsPressed(VK_DOWN)) {
-		brick.StretchY(1.0f);
-	}
-	else if (wnd.kbd.KeyIsPressed(VK_UP)) {
-		brick.StretchY(-1.0f);
-	}
-	*/
 }
 
 void Game::ComposeFrame()

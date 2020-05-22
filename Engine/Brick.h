@@ -15,6 +15,9 @@ public:
 	void StretchX(float x);
 	void StretchY(float y);
 	RectF& GetRect();
+	bool GetDestroyed() {
+		return destroyed;
+	}
 private:
 	RectF rect;
 	Color c;

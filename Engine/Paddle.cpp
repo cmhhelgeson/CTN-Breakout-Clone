@@ -46,6 +46,11 @@ void Paddle::Update(const Keyboard& kbd, float dt)
 	else if (kbd.KeyIsPressed(VK_RIGHT)) {
 		pos.x += speed * dt;
 	}
+
+}
+
+void Paddle::MoveUp(float dt) {
+	pos.y -= ladderSpeed * dt;
 }
 
 RectF Paddle::GetRect() const

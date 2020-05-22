@@ -13,12 +13,14 @@ public:
 	void DoWallCollision(const RectF& walls);
 	void Update(const Keyboard& kbd, float dt);
 	RectF GetRect() const;
+	void MoveUp(float dt);
 private:
 	static constexpr float wingWidth = 10.0f;
 	Color wingColor = Colors::Red;
 	Color c = Colors::White;
 	Vec2 pos;
-	float speed = 300.0f;
+	float speed = 500.0f;
+	static constexpr float ladderSpeed = 300.0f;
 	float halfWidth;
 	float halfHeight;
 

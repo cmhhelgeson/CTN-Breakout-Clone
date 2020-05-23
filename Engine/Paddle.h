@@ -2,7 +2,7 @@
 
 #include "Ball.h"
 #include "Vec2.h"
-#include "RectF.h"
+#include "Rect.h"
 #include "Graphics.h"
 #include "Keyboard.h"
 class Paddle {

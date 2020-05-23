@@ -16,7 +16,7 @@ Brick::Brick(const RectF& rect_in, Color color_in)
 void Brick::Draw(Graphics & gfx) const
 {
 	if (!destroyed) {
-		gfx.DrawRect(rect, c);
+		gfx.DrawRect((rect.GetExpanded(-padding)), c);
 	}
 }
 
@@ -24,16 +24,16 @@ bool Brick::DoBallCollision(Ball& ball)
 {
 	RectF ballRect = ball.GetRect();
 	if (rect.instanceCollision(ball.GetRect())) {
-		if (ballRect.top > rect.top && ballRect.bottom < rect.bottom) {
-			ball.ReboundX();
-			destroyed = true;
-			return true;
-		}
-		else {
+		const Vec2 BallPos = ball.GetPosition();
+		if (BallPos.x >= rect.left && BallPos.x <= rect.right) {
 			ball.ReboundY();
-			destroyed = true;
-			return true;
 		}
+		else //if (ballPos.x < rect.left || ballPos.x > rect.right) 
+		{
+			ball.ReboundX();
+		}
+		destroyed = true;
+		return true;
 	}
 	return false;
 

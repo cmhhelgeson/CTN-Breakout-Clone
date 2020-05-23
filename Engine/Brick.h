@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RectF.h"
+#include "Rect.h"
 #include "Colors.h"
 #include "Graphics.h"
 #include "Ball.h"
@@ -22,4 +22,5 @@ private:
 	RectF rect;
 	Color c;
 	bool destroyed = false;
+	float padding = 1.0f;
 };

@@ -41,7 +41,7 @@ Game::Game(MainWindow& wnd)
 		for (int x = 0; x < nBrickAcross; x++) {
 			bricks[y * nBrickAcross + x] = Brick(
 				RectF(topLeft + Vec2(x * brickWidth, y * brickHeight), 
-				brickWidth - 1, brickHeight - 1), c);
+				brickWidth, brickHeight), c);
 		}
 	}
 }

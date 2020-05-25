@@ -55,7 +55,5 @@ void Paddle::MoveUp(float dt) {
 
 RectF Paddle::GetRect() const
 {
-	RectF rect;
-	return rect.RectFromCenter(
-		pos, halfWidth, halfHeight);
+	return RectF::RectFromCenter(pos, halfWidth, halfHeight);
 }
